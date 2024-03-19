@@ -28,6 +28,10 @@ class DiceFragment : Fragment() {
         numberDisplayTextView.text = currNum
     }
 
+    private fun changeNum(_currNum:String){
+        numberDisplayTextView.text = _currNum
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,6 +53,10 @@ class DiceFragment : Fragment() {
         if(currNum=="0")
         {
             changeNum()
+        }
+        else
+        {
+            changeNum(currNum)
         }
     }
 
