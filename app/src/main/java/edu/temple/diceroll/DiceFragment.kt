@@ -14,11 +14,18 @@ const val CURR_NUM_KEY = "currNum"
 class DiceFragment : Fragment() {
     private var sides: Int? = null
     private var currNum : String = "0"
+    private lateinit var numberDisplayTextView:TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             sides = it.getInt(DIE_SIDES)
         }
+    }
+
+    fun changeNum()
+    {
+        currNum = (Random.nextInt(sides!!) + 1).toString()
+        numberDisplayTextView.text = currNum
     }
 
     override fun onCreateView(
@@ -27,10 +34,9 @@ class DiceFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_dice, container, false).apply {
 
-            val numberDisplayTextView = findViewById<TextView>(R.id.numberDisplay)
+            numberDisplayTextView = findViewById<TextView>(R.id.numberDisplay)
             findViewById<Button>(R.id.rollButton).setOnClickListener {
-                currNum = (Random.nextInt(sides!!) + 1).toString()
-                numberDisplayTextView.text = currNum
+                changeNum()
             }
         }
     }
