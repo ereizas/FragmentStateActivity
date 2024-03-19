@@ -22,7 +22,7 @@ class DiceFragment : Fragment() {
         }
     }
 
-    fun changeNum()
+    private fun changeNum()
     {
         currNum = (Random.nextInt(sides!!) + 1).toString()
         numberDisplayTextView.text = currNum
@@ -38,6 +38,17 @@ class DiceFragment : Fragment() {
             findViewById<Button>(R.id.rollButton).setOnClickListener {
                 changeNum()
             }
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        savedInstanceState?.run{
+            currNum=getString(CURR_NUM_KEY,"0")
+        }
+        if(currNum=="0")
+        {
+            changeNum()
         }
     }
 
